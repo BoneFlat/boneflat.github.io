@@ -44,6 +44,59 @@
     padding: 56px 24px 96px;
   }
 
+  /* ── LANG TOGGLE ── */
+  .lang-toggle-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 16px;
+  }
+
+  .lang-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+
+  .lang-toggle button {
+    padding: 8px 16px;
+    border: none;
+    background: transparent;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    color: var(--text-3);
+    transition: background .18s, color .18s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .lang-toggle button.active {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .lang-toggle .divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border);
+    flex-shrink: 0;
+  }
+
   /* ── HEADER ── */
   header {
     background: var(--white);
@@ -530,6 +583,14 @@
     letter-spacing: 0.04em;
   }
 
+  /* ── LANG TRANSITION ── */
+  .lang-fade {
+    transition: opacity .18s ease;
+  }
+  .lang-fade.fading {
+    opacity: 0;
+  }
+
   /* ── ANIMATIONS ── */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
@@ -551,58 +612,66 @@
   @media print {
     body { background: #fff; }
     * { animation: none !important; }
+    .lang-toggle-wrap { display: none; }
   }
 </style>
 </head>
 <body>
 <div class="wrapper">
 
+<!-- ── LANG TOGGLE ── -->
+<div class="lang-toggle-wrap">
+  <div class="lang-toggle" role="group" aria-label="Language toggle">
+    <button id="btn-vi" class="active" onclick="setLang('vi')">🇻🇳 Tiếng Việt</button>
+    <div class="divider"></div>
+    <button id="btn-en" onclick="setLang('en')">🇺🇸 English</button>
+  </div>
+</div>
+
 <!-- ══ HEADER ══ -->
-<header>
+<header class="lang-fade">
   <div>
     <div class="role-tag">Unity · Mobile Game Dev</div>
     <h1>Nguyễn Hữu Thắng</h1>
-    <p class="tagline">6 năm phát triển game mobile — chuyên gameplay programming và tối ưu hiệu năng. Đã ship nhiều sản phẩm thực tế lên Google Play.</p>
+    <p class="tagline" data-vi="6 năm phát triển game mobile — chuyên gameplay programming và tối ưu hiệu năng. Đã ship nhiều sản phẩm thực tế lên Google Play." data-en="6 years of mobile game development — specialized in gameplay programming and performance optimization. Shipped multiple live products to Google Play.">6 năm phát triển game mobile — chuyên gameplay programming và tối ưu hiệu năng. Đã ship nhiều sản phẩm thực tế lên Google Play.</p>
     <div class="chips">
-      <span class="chip highlight">Gameplay Programming</span>
-      <span class="chip highlight">Performance Optimization</span>
+      <span class="chip highlight" data-vi="Gameplay Programming" data-en="Gameplay Programming">Gameplay Programming</span>
+      <span class="chip highlight" data-vi="Tối ưu hiệu năng" data-en="Performance Optimization">Tối ưu hiệu năng</span>
       <span class="chip">Unity · C#</span>
       <span class="chip">Android</span>
-      <span class="chip">Hà Nội, Việt Nam</span>
+      <span class="chip" data-vi="Hà Nội, Việt Nam" data-en="Hanoi, Vietnam">Hà Nội, Việt Nam</span>
       <a href="https://mail.google.com/mail/?view=cm&to=thangnh.sas@gmail.com" target="_blank" class="chip" style="text-decoration:none;color:var(--text-2);">✉ thangnh.sas@gmail.com</a>
       <a href="tel:0971445336" class="chip" style="text-decoration:none;color:var(--text-2);">📞 0971 445 336</a>
     </div>
   </div>
   <div style="flex-shrink:0;text-align:center;">
     <img src="avatar.jpg" alt="Nguyễn Hữu Thắng" style="width:140px;height:140px;border-radius:50%;object-fit:cover;border:3px solid var(--border);display:block;">
-    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);letter-spacing:0.08em;margin-top:10px;text-transform:uppercase;">6 yrs exp.</div>
+    <div style="font-family:var(--mono);font-size:10px;color:var(--text-3);letter-spacing:0.08em;margin-top:10px;text-transform:uppercase;" data-vi="6 năm kinh nghiệm" data-en="6 yrs exp.">6 yrs exp.</div>
   </div>
 </header>
 
 <!-- ══ EXPERIENCE ══ -->
-<section class="section">
-  <div class="section-head"><h2>Kinh nghiệm làm việc</h2></div>
+<section class="section lang-fade">
+  <div class="section-head"><h2 data-vi="Kinh nghiệm làm việc" data-en="Work Experience">Kinh nghiệm làm việc</h2></div>
 
   <!-- Raccoon / Tripsoft -->
   <div class="job">
     <div class="job-top">
       <div>
         <div class="job-co">Raccoon · Tripsoft</div>
-        <div class="job-title">Game Developer</div>
+        <div class="job-title" data-vi="Game Developer" data-en="Game Developer">Game Developer</div>
       </div>
-      <span class="job-period">2025 — Nay · 1 năm</span>
+      <span class="job-period" data-vi="2025 — Nay · 1 năm" data-en="2025 — Present · 1 yr">2025 — Nay · 1 năm</span>
     </div>
     <div class="job-desc">
       <ul>
-        <li>Lập trình cơ chế gameplay cho đa thể loại: Idle RPG, puzzle, card match, simulation 3D.</li>
-        <li>Tối ưu hiệu năng Unity (draw call batching, object pooling, memory profiling) trên thiết bị tầm trung.</li>
-        <li>Phối hợp với designer implement game feel: tweening, particle, camera shake, animation state machine.</li>
-        <li>Tích hợp SDK quảng cáo (AdMob), analytics và in-app purchase.</li>
+        <li data-vi="Lập trình cơ chế gameplay cho đa thể loại: Idle RPG, puzzle, card match, simulation 3D." data-en="Developed gameplay mechanics across multiple genres: Idle RPG, puzzle, card match, 3D simulation.">Lập trình cơ chế gameplay cho đa thể loại: Idle RPG, puzzle, card match, simulation 3D.</li>
+        <li data-vi="Tối ưu hiệu năng Unity (draw call batching, object pooling, memory profiling) trên thiết bị tầm trung." data-en="Optimized Unity performance (draw call batching, object pooling, memory profiling) on mid-range devices.">Tối ưu hiệu năng Unity (draw call batching, object pooling, memory profiling) trên thiết bị tầm trung.</li>
+        <li data-vi="Phối hợp với designer implement game feel: tweening, particle, camera shake, animation state machine." data-en="Collaborated with designers to implement game feel: tweening, particles, camera shake, animation state machine.">Phối hợp với designer implement game feel: tweening, particle, camera shake, animation state machine.</li>
+        <li data-vi="Tích hợp SDK quảng cáo (AdMob), analytics và in-app purchase." data-en="Integrated ad SDKs (AdMob), analytics, and in-app purchase systems.">Tích hợp SDK quảng cáo (AdMob), analytics và in-app purchase.</li>
       </ul>
     </div>
     <div class="prod-grid">
-
-      <!-- Pirate King -->
       <a class="prod-card" href="https://play.google.com/store/apps/details?id=com.RC31.pirate.monster.clicker.idle.rpg" target="_blank" style="text-decoration:none;">
         <div class="prod-thumb">
           <img src="pirate.png" alt="Pirate King: Tap Idle RPG" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -612,8 +681,6 @@
           <div class="prod-name">Pirate King: Tap Idle RPG</div>
         </div>
       </a>
-
-      <!-- Snake Out -->
       <a class="prod-card" href="https://play.google.com/store/apps/details?id=com.RC45.snake.out.puzzle" target="_blank" style="text-decoration:none;">
         <div class="prod-thumb">
           <img src="snake.png" alt="Snake Out Puzzle: Escape Time!" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -623,8 +690,6 @@
           <div class="prod-name">Snake Out Puzzle: Escape Time!</div>
         </div>
       </a>
-
-      <!-- Solitaire Club -->
       <a class="prod-card" href="https://play.google.com/store/apps/details?id=com.RC49.solitaire.tilematch" target="_blank" style="text-decoration:none;">
         <div class="prod-thumb">
           <img src="solitaire.png" alt="Solitaire Club: Tile Match" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -634,8 +699,6 @@
           <div class="prod-name">Solitaire Club: Tile Match</div>
         </div>
       </a>
-
-      <!-- Supermarket Story 3D -->
       <a class="prod-card" href="https://play.google.com/store/apps/details?id=com.rc27.supermarket.story.store.manager.simulator&hl=en-US" target="_blank" style="text-decoration:none;">
         <div class="prod-thumb">
           <img src="market.png" alt="Supermarket Story 3D" style="width:100%;height:100%;object-fit:cover;display:block;">
@@ -645,7 +708,6 @@
           <div class="prod-name">Supermarket Story 3D</div>
         </div>
       </a>
-
     </div>
   </div>
 
@@ -654,16 +716,16 @@
     <div class="job-top">
       <div>
         <div class="job-co">Falcon Game Studio</div>
-        <div class="job-title">Game Developer</div>
+        <div class="job-title" data-vi="Game Developer" data-en="Game Developer">Game Developer</div>
       </div>
-      <span class="job-period">2020 — 2024 · 4 năm</span>
+      <span class="job-period" data-vi="2020 — 2024 · 4 năm" data-en="2020 — 2024 · 4 yrs">2020 — 2024 · 4 năm</span>
     </div>
     <div class="job-desc">
       <ul>
-        <li>Phát triển gameplay bắn súng chiến thuật — AI enemy, ballistic system, level progression.</li>
-        <li>Tối ưu render cho thiết bị low-end: LOD, texture compression, shader optimization, profiling với Unity Profiler.</li>
-        <li>Xây dựng hệ thống upgrade xe tăng, currency, daily quest và reward loop.</li>
-        <li>Publish và duy trì app trên Google Play Console, xử lý crash report và ANR.</li>
+        <li data-vi="Phát triển gameplay bắn súng chiến thuật — AI enemy, ballistic system, level progression." data-en="Developed tactical shooter gameplay — enemy AI, ballistic system, level progression.">Phát triển gameplay bắn súng chiến thuật — AI enemy, ballistic system, level progression.</li>
+        <li data-vi="Tối ưu render cho thiết bị low-end: LOD, texture compression, shader optimization, profiling với Unity Profiler." data-en="Optimized rendering for low-end devices: LOD, texture compression, shader optimization, Unity Profiler.">Tối ưu render cho thiết bị low-end: LOD, texture compression, shader optimization, profiling với Unity Profiler.</li>
+        <li data-vi="Xây dựng hệ thống upgrade xe tăng, currency, daily quest và reward loop." data-en="Built tank upgrade system, currency, daily quest, and reward loop.">Xây dựng hệ thống upgrade xe tăng, currency, daily quest và reward loop.</li>
+        <li data-vi="Publish và duy trì app trên Google Play Console, xử lý crash report và ANR." data-en="Published and maintained apps on Google Play Console, handled crash reports and ANRs.">Publish và duy trì app trên Google Play Console, xử lý crash report và ANR.</li>
       </ul>
     </div>
     <div class="prod-grid" style="grid-template-columns: repeat(auto-fill, minmax(220px,1fr))">
@@ -690,8 +752,8 @@
 </section>
 
 <!-- ══ PERSONAL PROJECT ══ -->
-<section class="section">
-  <div class="section-head"><h2>Dự án khác</h2></div>
+<section class="section lang-fade">
+  <div class="section-head"><h2 data-vi="Dự án khác" data-en="Other Projects">Dự án khác</h2></div>
 
   <div class="personal-proj">
     <div class="proj-hero" style="padding:0;">
@@ -699,9 +761,9 @@
     </div>
 
     <div class="proj-body">
-      <div class="proj-badge">Indie Team Project · 2024</div>
+      <div class="proj-badge" data-vi="Indie Team Project · 2024" data-en="Indie Team Project · 2024">Indie Team Project · 2024</div>
       <div class="proj-title">Hegg Sort: Color Puzzle Games</div>
-      <p class="proj-desc">
+      <p class="proj-desc" data-vi='Game puzzle casual phát triển cùng team cá nhân. Người chơi sắp xếp các quả trứng theo màu vào đúng ổ, độ khó leo thang qua từng level. Cá nhân đảm nhiệm <strong>lập trình một phần gameplay in-game</strong> và <strong>design level progression</strong> — xây dựng đường cong độ khó, cân bằng số lượng màu, bố cục từng màn.' data-en='Casual puzzle game developed with an indie team. Players sort colored eggs into matching nests, with difficulty escalating across levels. Personally responsible for <strong>partial in-game gameplay programming</strong> and <strong>level progression design</strong> — building the difficulty curve, balancing color counts, and laying out each stage.'>
         Game puzzle casual phát triển cùng team cá nhân. Người chơi sắp xếp các quả trứng theo màu vào đúng ổ, độ khó leo thang qua từng level. Cá nhân đảm nhiệm <strong>lập trình một phần gameplay in-game</strong> và <strong>design level progression</strong> — xây dựng đường cong độ khó, cân bằng số lượng màu, bố cục từng màn.
       </p>
       <div class="proj-meta">
@@ -709,8 +771,8 @@
         <span class="proj-tag">C#</span>
         <span class="proj-tag">DOTween</span>
         <span class="proj-tag">Object Pooling</span>
-        <span class="proj-tag">Level Design</span>
-        <span class="proj-tag">Indie Team</span>
+        <span class="proj-tag" data-vi="Level Design" data-en="Level Design">Level Design</span>
+        <span class="proj-tag" data-vi="Indie Team" data-en="Indie Team">Indie Team</span>
       </div>
       <a href="https://apkpure.com/hegg-sort-color-puzzle-games/com.seven.idea.games.studio.hexa.egg.sort.puzzle/download" target="_blank" class="apk-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -718,31 +780,24 @@
           <polyline points="7 10 12 15 17 10"/>
           <line x1="12" y1="15" x2="12" y2="3"/>
         </svg>
-        Tải APK demo
+        <span data-vi="Tải APK demo" data-en="Download APK demo">Tải APK demo</span>
       </a>
 
       <div class="gameplay-section">
-        <div class="gameplay-label">Gameplay screenshots</div>
+        <div class="gameplay-label" data-vi="Ảnh gameplay" data-en="Gameplay screenshots">Gameplay screenshots</div>
         <div class="gameplay-frames">
-
-          <!-- Frame 1 -->
           <div class="frame">
-            <img src="hegg_3.jpg" alt="Hegg Sort Main Menu" style="width:100%;height:100%;object-fit:cover;display:block;">
+            <img src="hegg_3.jpg" alt="Hegg Sort Gameplay" style="width:100%;height:100%;object-fit:cover;display:block;">
             <div class="frame-cap">Gameplay</div>
           </div>
-
-          <!-- Frame 2 -->
           <div class="frame">
             <img src="hegg_4.jpg" alt="Hegg Sort Gameplay" style="width:100%;height:100%;object-fit:cover;display:block;">
             <div class="frame-cap">Gameplay</div>
           </div>
-
-          <!-- Frame 3 -->
           <div class="frame">
             <img src="hegg_5.jpg" alt="Hegg Sort Level Complete" style="width:100%;height:100%;object-fit:cover;display:block;">
             <div class="frame-cap">Gameplay</div>
           </div>
-
         </div>
       </div>
     </div>
@@ -750,23 +805,23 @@
 </section>
 
 <!-- ══ EDUCATION ══ -->
-<section class="section">
-  <div class="section-head"><h2>Học vấn</h2></div>
+<section class="section lang-fade">
+  <div class="section-head"><h2 data-vi="Học vấn" data-en="Education">Học vấn</h2></div>
   <div class="edu-card">
     <div>
-      <div class="edu-name">Đại học Bách Khoa Hà Nội</div>
-      <div class="edu-sub">Công nghệ phần mềm / Công nghệ Thông tin</div>
+      <div class="edu-name" data-vi="Đại học Bách Khoa Hà Nội" data-en="Hanoi University of Science and Technology">Đại học Bách Khoa Hà Nội</div>
+      <div class="edu-sub" data-vi="Công nghệ phần mềm / Công nghệ Thông tin" data-en="Software Engineering / Information Technology">Công nghệ phần mềm / Công nghệ Thông tin</div>
     </div>
     <div class="edu-pill">HUST</div>
   </div>
 </section>
 
 <!-- ══ SKILLS ══ -->
-<section class="section">
-  <div class="section-head"><h2>Kỹ năng</h2></div>
+<section class="section lang-fade">
+  <div class="section-head"><h2 data-vi="Kỹ năng" data-en="Skills">Kỹ năng</h2></div>
   <div class="skills-wrap">
     <div class="skill-group">
-      <div class="skill-group-name">Chuyên môn chính</div>
+      <div class="skill-group-name" data-vi="Chuyên môn chính" data-en="Core Expertise">Chuyên môn chính</div>
       <div class="skill-tags">
         <span class="skill-tag core">Gameplay Programming</span>
         <span class="skill-tag core">Performance Optimization</span>
@@ -806,5 +861,38 @@
 </footer>
 
 </div>
+
+<script>
+  let currentLang = 'vi';
+
+  function setLang(lang) {
+    if (lang === currentLang) return;
+    currentLang = lang;
+
+    // Toggle button states
+    document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+
+    // Update html lang attr
+    document.documentElement.lang = lang === 'vi' ? 'vi' : 'en';
+
+    // Fade all lang-fade sections
+    const fadeSections = document.querySelectorAll('.lang-fade');
+    fadeSections.forEach(el => el.classList.add('fading'));
+
+    setTimeout(() => {
+      // Update all elements with data-vi / data-en
+      document.querySelectorAll('[data-vi][data-en]').forEach(el => {
+        const val = el.getAttribute('data-' + lang);
+        if (val !== null) {
+          // Use innerHTML for elements that may have HTML tags (like proj-desc)
+          el.innerHTML = val;
+        }
+      });
+
+      fadeSections.forEach(el => el.classList.remove('fading'));
+    }, 180);
+  }
+</script>
 </body>
 </html>
